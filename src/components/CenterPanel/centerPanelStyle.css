@@ -1,0 +1,22 @@
+.budgetGroupParent {
+    border-style: dashed;
+    border-color: black;
+}
+
+.budgetGroupHeader {
+    display: flex;
+    flex-direction: row;
+    width: 1200px;
+    justify-content: space-between;
+    padding: 10px 30px 30px 30px
+}
+
+.budgetGroupItemParent {
+    background-color: lightgray;
+    margin: 15px;
+}
+
+.budgetGroupName {
+    font-size: xx-large;
+    font-weight: bold;
+}

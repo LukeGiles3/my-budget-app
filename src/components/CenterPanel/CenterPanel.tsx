@@ -1,7 +1,11 @@
+import BudgetGroups from "./BudgetGroups"
+import MonthNavigation from "./MonthNavigation"
+
 export default function CenterPanel() {
     return (
-        <>
-            <div>I am the center panel</div>
-        </>
+        <div>
+            <MonthNavigation />
+            <BudgetGroups />
+        </div>
     )
 } 
