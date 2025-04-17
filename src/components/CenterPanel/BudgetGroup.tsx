@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./centerPanelStyle.css";
 import AddGroupItem from "./AddGroupItem";
 import BudgetGroupItem from "./BudgetGroupItem";
+import RemainingOrSpent from "./RemainingOrSpent";
 
 interface GroupItem {
   id: string;
@@ -24,7 +25,7 @@ export default function BudgetGroup({ groupName }: { groupName: string }) {
       <div className="budgetGroupHeader">
         <div className="budgetGroupName">{groupName}</div>
         <div>Planned</div>
-        <div>Remaining</div>
+        <div><RemainingOrSpent /></div>
       </div>
       <div>
       <ul style={{listStyle: 'none', padding: 0, margin: 0}}>

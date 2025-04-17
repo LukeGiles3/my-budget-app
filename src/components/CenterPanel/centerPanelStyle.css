@@ -15,6 +15,9 @@
 .budgetGroupItemParent {
     background-color: lightgray;
     margin: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
 }
 
 .budgetGroupName {
@@ -22,6 +25,15 @@
     font-weight: bold;
 }
 
-.incomeBudgetGroup {
-    border-color: green;
+.budgetGroupItemName {
+    width: 250px;
 }
+
+.budgetGroupItemPlanned {
+    width: 200px;
+}
+
+.budgetGroupItemFilter {
+    width: 140px;
+}
+
