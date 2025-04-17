@@ -1,6 +1,7 @@
 .budgetGroupParent {
     border-style: dashed;
     border-color: black;
+    margin-bottom: 20px;
 }
 
 .budgetGroupHeader {
@@ -19,4 +20,8 @@
 .budgetGroupName {
     font-size: xx-large;
     font-weight: bold;
+}
+
+.incomeBudgetGroup {
+    border-color: green;
 }

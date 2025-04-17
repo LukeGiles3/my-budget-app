@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BudgetGroup from "./BudgetGroup";
 import AddGroup from "./AddGroup";
+import './centerPanelStyle.css'
 
 interface Group {
     id: string;
@@ -22,7 +23,7 @@ export default function BudgetGroups() {
     return (
         <div>
             <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                <li style={{marginBottom: '20px'}}><BudgetGroup groupName="Income" /></li>
+                <li><BudgetGroup groupName="Income" /></li>
                 {groups.map(group => (
                     <li key={group.id}><BudgetGroup groupName={group.groupName}/></li>
                 ))}
