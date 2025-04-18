@@ -1,9 +1,6 @@
 import { TextField } from '@mui/material';
-import { useState } from 'react';
 
-const PlannedAmount = () => {
-  const [rawAmount, setRawAmount] = useState('');
-
+const PlannedAmount = ({onSetRawAmount, rawAmount}: {onSetRawAmount: (amount: string) => void; rawAmount: string}) => {
   const formatCurrency = (value: string) => {
     const number = Number(value.replace(/[^0-9.]/g, ''));
     if (isNaN(number)) return '';
@@ -11,19 +8,14 @@ const PlannedAmount = () => {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 2,
-    }).format(number / 100); // divide by 100 because user types digits, not decimal
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, ''); // remove all non-digits
-    setRawAmount(value);
+    }).format(number / 100);
   };
 
   return (
     <TextField
   variant="standard"
   value={formatCurrency(rawAmount)}
-  onChange={handleChange}
+  onChange={(e) => onSetRawAmount(e.target.value.replace(/\D/g, ''))}
   placeholder="$0.00"
   slotProps={{
     input: {

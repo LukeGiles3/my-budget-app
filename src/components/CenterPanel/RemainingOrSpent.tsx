@@ -1,15 +1,9 @@
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useState } from 'react';
+import Select from '@mui/material/Select';
 
-export default function RemainingOrSpent() {
-  const [calculation, setCalculation] = useState('Remaining');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setCalculation(event.target.value as string);
-  };
+const RemainingOrSpent = ( {onSetCalculation, value}: {onSetCalculation: (calculation: string) => void; value: string } ) => {
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -17,8 +11,8 @@ export default function RemainingOrSpent() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={calculation}
-          onChange={handleChange}
+          value={value}
+          onChange={(e) => onSetCalculation(e.target.value)}
         >
           <MenuItem value={'Remaining'}>Remaining</MenuItem>
           <MenuItem value={'Spent'}>Spent</MenuItem>
@@ -27,3 +21,5 @@ export default function RemainingOrSpent() {
     </Box>
   );
 }
+
+export default RemainingOrSpent

@@ -11,6 +11,7 @@ interface GroupItem {
 
 export default function BudgetGroup({ groupName }: { groupName: string }) {
   const [items, setItems] = useState<GroupItem[]>([]);
+  const [calculation, setCalculation] = useState('Remaining');
   
   const handleAddGroupItem = (itemName: string) => {
     const newGroupItem: GroupItem = {
@@ -25,12 +26,12 @@ export default function BudgetGroup({ groupName }: { groupName: string }) {
       <div className="budgetGroupHeader">
         <div className="budgetGroupName">{groupName}</div>
         <div>Planned</div>
-        <div><RemainingOrSpent /></div>
+        <div><RemainingOrSpent onSetCalculation={setCalculation} value={calculation} /></div>
       </div>
       <div>
       <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
                 {items.map(item => (
-                    <li key={item.id}><BudgetGroupItem itemName={item.itemName}/></li>
+                    <li key={item.id}><BudgetGroupItem itemName={item.itemName} calculationState={calculation}/></li>
                 ))}
             </ul>
       </div>
