@@ -1,0 +1,12 @@
+.headerNavigationContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.panelContainer {
+    background-color: #F4F7F8;
+    height: 100vh;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
