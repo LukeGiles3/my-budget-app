@@ -1,34 +1,20 @@
-import { useState } from "react";
 import BudgetGroup from "./BudgetGroup";
 import AddGroup from "./AddGroup";
 import './centerPanelStyle.css'
-
-interface Group {
-    id: string;
-    groupName: string;
-  }
+import { useGroups } from "../../context/GroupsContext";
 
 export default function BudgetGroups() {
-    const [groups, setGroups] = useState<Group[]>([]);
+  const { groups, addGroup } = useGroups();
 
-    const handleAddGroup = (groupName: string) => {
-        const newGroup: Group = {
-          id: crypto.randomUUID(),
-          groupName,
-        };
-        setGroups((prev) => [...prev, newGroup]);
-      };
-    
-
-    return (
-        <div>
-            <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                <li><BudgetGroup groupName="Income" /></li>
-                {groups.map(group => (
-                    <li key={group.id}><BudgetGroup groupName={group.groupName}/></li>
-                ))}
-            </ul>
-            <AddGroup onAddGroup={handleAddGroup} />
-        </div>
-    )
+  return (
+    <div>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        <li><BudgetGroup groupId="income" groupName="Income" /></li>
+        {groups.map(group => (
+          <li key={group.id}><BudgetGroup groupId={group.id} groupName={group.groupName} /></li>
+        ))}
+      </ul>
+      <AddGroup onAddGroup={addGroup} />
+    </div>
+  )
 }

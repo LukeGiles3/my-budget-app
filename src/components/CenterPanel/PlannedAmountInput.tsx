@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 
-const PlannedAmount = ({onSetRawAmount, rawAmount}: {onSetRawAmount: (amount: string) => void; rawAmount: string}) => {
+const PlannedAmountInput = ({onSetRawAmount, rawAmount}: {onSetRawAmount: (amount: string) => void; rawAmount: string}) => {
   const formatCurrency = (value: string) => {
     const number = Number(value.replace(/[^0-9.]/g, ''));
     if (isNaN(number)) return '';
@@ -32,4 +32,4 @@ const PlannedAmount = ({onSetRawAmount, rawAmount}: {onSetRawAmount: (amount: st
   );
 };
 
-export default PlannedAmount;
+export default PlannedAmountInput;

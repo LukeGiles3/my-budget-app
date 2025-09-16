@@ -1,9 +1,17 @@
 import { useState } from "react";
 import "./centerPanelStyle.css";
-import PlannedAmount from "./PlannedAmount";
+import PlannedAmountInput from "./PlannedAmountInput";
+import RemainingOrSpentDisplay from "./RemainingOrSpentDisplay";
+import RemainingOrSpent from "./RemainingOrSpent";
+import { useGroups } from "../../context/GroupsContext";
 
-export default function BudgetGroupItem({ itemName, calculationState }: { itemName: string, calculationState: string}) {
-  const [rawAmount, setRawAmount] = useState('')
+export default function BudgetGroupItem({ itemId, itemName }: { itemId: string; itemName: string }) {
+  const { items, setItemPlannedRaw, useGroupItemTotal } = useGroups();
+  const item = items.find(i => i.id === itemId);
+
+  const plannedRaw = item?.plannedRaw ?? "";
+  const [calculation, setCalculation] = useState<"Remaining" | "Spent">("Remaining");
+  const calculatedAmount = useGroupItemTotal(calculation, itemId);
 
   return (
     <div className="budgetGroupItemParent">
@@ -11,14 +19,13 @@ export default function BudgetGroupItem({ itemName, calculationState }: { itemNa
         {itemName}
       </div>
       <div className="budgetGroupItemPlanned">
-        <PlannedAmount onSetRawAmount={setRawAmount} rawAmount={rawAmount}/>
+        <PlannedAmountInput onSetRawAmount={(v) => setItemPlannedRaw(itemId, v)} rawAmount={plannedRaw} />
       </div>
       <div className="budgetGroupItemFilter">
-        {calculationState === 'Remaining' ? (
-          <div>remaining</div>
-        ) : (
-          <div>spent</div>
-        )}
+        <RemainingOrSpent value={calculation} onSetCalculation={(mode) => setCalculation(mode as "Remaining" | "Spent")} />
+      </div>
+      <div className="budgetGroupItemFilter">
+        <RemainingOrSpentDisplay amount={calculatedAmount} />
       </div>
     </div>
   );
